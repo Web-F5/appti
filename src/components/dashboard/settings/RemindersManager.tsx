@@ -177,6 +177,14 @@ export default function RemindersManager({ business }: { business: any }) {
   const { toast, showToast } = useToast()
   const [templates, setTemplates] = useState<ReminderTemplate[]>(business.reminderTemplates ?? [])
 
+  const plan       = business.plan ?? 'PAYG'
+  const smsRate    = plan === 'PRO' ? '$0.060' : plan === 'STARTER' ? '$0.080' : '$0.120'
+  const emailRate  = plan === 'PRO' ? '$0.0020' : plan === 'STARTER' ? '$0.0030' : '$0.0050'
+
+  const billingNote = plan === 'PAYG'
+    ? `Each message sent is charged directly to your credit balance — SMS: ${smsRate}/message (max 160 characters), Email: ${emailRate}/message.`
+    : `Your ${plan} plan includes a monthly bundle of messages at no extra charge. Once your bundle is used up, additional messages are charged to your credit balance at SMS: ${smsRate}/message (max 160 characters), Email: ${emailRate}/message. Unused bundle messages do not roll over.`
+
   async function handleSave(id: string, data: Partial<ReminderTemplate>) {
     try {
       const res = await fetch(`/api/reminders/${id}`, {
@@ -205,10 +213,14 @@ export default function RemindersManager({ business }: { business: any }) {
     <>
       <Toast toast={toast} />
       <div className="max-w-2xl space-y-3">
-        <p className="text-sm text-gray-500 mb-4">
-          These reminders are sent automatically for every confirmed appointment.
-          You are charged per message sent based on your plan.
-        </p>
+        <div className="rounded-xl p-4 mb-4" style={{ background: 'var(--purple-light)', border: '0.5px solid var(--border)' }}>
+          <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: 'var(--purple-dark)' }}>
+            {plan} plan · message billing
+          </p>
+          <p className="text-sm" style={{ color: 'var(--text-mid)', lineHeight: 1.6 }}>
+            {billingNote}
+          </p>
+        </div>
 
         {templates.map(template => (
           <ReminderCard

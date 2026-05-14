@@ -41,7 +41,7 @@ export default async function SettingsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-8">Settings</h1>
+      <h1 className="text-2xl font-bold mb-8" style={{ color: 'var(--text-dark)' }}>Settings</h1>
       <SettingsTabs business={serialised} />
     </div>
   )

@@ -1,7 +1,5 @@
 'use client'
 // src/components/dashboard/SettingsTabs.tsx
-// Tabbed settings interface with sections for profile, booking rules,
-// services, staff, and reminder templates.
 
 import { useState } from 'react'
 import BusinessProfileForm from './settings/BusinessProfileForm'
@@ -25,16 +23,16 @@ export default function SettingsTabs({ business }: Props) {
 
   return (
     <div>
-      {/* Tab bar */}
-      <div className="flex gap-1 mb-8 p-1 rounded-xl w-fit" style={{ background: 'var(--purple-light)' }}>
+      {/* Tab bar — flex-wrap so it flows to 2 rows on mobile */}
+      <div className="flex flex-wrap gap-1.5 mb-8">
         {TABS.map(tab => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
             className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
             style={{
-              background: activeTab === tab.key ? 'var(--purple-dark)' : 'transparent',
-              color: activeTab === tab.key ? 'white' : 'var(--text-mid)',
+              background: activeTab === tab.key ? 'var(--purple-dark)' : 'var(--purple-light)',
+              color:      activeTab === tab.key ? 'white' : 'var(--text-mid)',
             }}
           >
             {tab.label}

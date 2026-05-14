@@ -68,7 +68,7 @@ export default async function DashboardPage() {
           <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>+{stats.newClientsThisMonth} this month</p>
         </div>
 
-        {/* Credit balance card — replaces separate purple card on mobile */}
+        {/* Credit balance card with top up link */}
         <div className="stat-card" style={{
           background: stats.creditBalance < 2 ? '#FEF2F2' : 'var(--purple-dark)',
           border: stats.creditBalance < 2 ? '0.5px solid #FCA5A5' : 'none',
@@ -77,8 +77,14 @@ export default async function DashboardPage() {
           <p className="text-2xl lg:text-3xl font-semibold" style={{ color: stats.creditBalance < 2 ? '#DC2626' : 'white' }}>
             ${stats.creditBalance.toFixed(2)}
           </p>
-          <Link href="/billing" className="text-xs mt-1 inline-block" style={{ color: stats.creditBalance < 2 ? '#DC2626' : 'var(--blue-light)' }}>
-            {stats.creditBalance < 2 ? '⚠ Top up now' : stats.plan + ' plan'}
+          <p className="text-xs mt-0.5 mb-2" style={{ color: stats.creditBalance < 2 ? '#DC2626' : 'rgba(255,255,255,0.5)' }}>
+            {stats.creditBalance < 2 ? '⚠ Low balance' : stats.plan + ' plan'}
+          </p>
+          <Link href="/billing"
+            className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all"
+            style={{ background: 'var(--orange)', color: 'white', textDecoration: 'none' }}
+          >
+            Top up
           </Link>
         </div>
       </div>
