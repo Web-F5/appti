@@ -1,5 +1,6 @@
 // src/app/(dashboard)/settings/page.tsx
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { requireSession } from '@/lib/auth/session'
 import { prisma } from '@/lib/prisma/client'
 import SettingsTabs from '@/components/dashboard/SettingsTabs'
@@ -42,7 +43,9 @@ export default async function SettingsPage() {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-8" style={{ color: 'var(--text-dark)' }}>Settings</h1>
-      <SettingsTabs business={serialised} />
+      <Suspense fallback={<div style={{ color: 'var(--text-muted)' }}>Loading…</div>}>
+        <SettingsTabs business={serialised} />
+      </Suspense>
     </div>
   )
 }

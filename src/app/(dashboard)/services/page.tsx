@@ -30,7 +30,7 @@ export default async function ServicesPage() {
             {services.length} service{services.length !== 1 ? 's' : ''}
           </p>
         </div>
-        <Link href="/settings" className="btn-primary" style={{ color: 'white', textDecoration: 'none' }}>
+        <Link href="/settings?tab=services" className="btn-primary" style={{ color: 'white', textDecoration: 'none' }}>
           + Add service
         </Link>
       </div>

@@ -2,6 +2,7 @@
 // src/components/dashboard/SettingsTabs.tsx
 
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import BusinessProfileForm from './settings/BusinessProfileForm'
 import BookingRulesForm from './settings/BookingRulesForm'
 import ServicesManager from './settings/ServicesManager'
@@ -19,7 +20,11 @@ const TABS = [
 type Props = { business: any }
 
 export default function SettingsTabs({ business }: Props) {
-  const [activeTab, setActiveTab] = useState('profile')
+  const searchParams = useSearchParams()
+  const initialTab   = searchParams.get('tab') ?? 'profile'
+  const [activeTab, setActiveTab] = useState(
+    TABS.find(t => t.key === initialTab) ? initialTab : 'profile'
+  )
 
   return (
     <div>

@@ -35,7 +35,7 @@ export default async function StaffPage() {
           <h1 className="text-2xl font-bold" style={{ color: 'var(--text-dark)' }}>Staff</h1>
           <p className="text-sm mt-0.5" style={{ color: 'var(--text-muted)' }}>{staff.length} staff member{staff.length !== 1 ? 's' : ''}</p>
         </div>
-        <Link href="/settings" className="btn-primary" style={{ color: 'white', textDecoration: 'none' }}>
+        <Link href="/settings?tab=staff" className="btn-primary" style={{ color: 'white', textDecoration: 'none' }}>
           + Add staff
         </Link>
       </div>
