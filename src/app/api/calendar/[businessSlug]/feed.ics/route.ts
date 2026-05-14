@@ -45,19 +45,17 @@ export async function GET(_req: NextRequest, { params }: Params) {
   const calendar = ical({ name: `${business.name} — Appointments` })
 
   for (const appt of appointments) {
-    calendar.createEvent({
-      uid: appt.icalUid,
-      start: appt.startsAt,
-      end: appt.endsAt,
+    const event = calendar.createEvent({
+      start:   appt.startsAt,
+      end:     appt.endsAt,
       summary: `${appt.service.name} — ${appt.client.name}`,
       description: [
         `Client: ${appt.client.name}`,
-        appt.client.phone ? `Phone: ${appt.client.phone}` : '',
-        appt.clientNotes ? `Notes: ${appt.clientNotes}` : '',
-      ]
-        .filter(Boolean)
-        .join('\n'),
+        appt.client.phone   ? `Phone: ${appt.client.phone}`   : '',
+        appt.clientNotes    ? `Notes: ${appt.clientNotes}`    : '',
+      ].filter(Boolean).join('\n'),
     })
+    if (appt.icalUid) event.uid(appt.icalUid)
   }
 
   return new Response(calendar.toString(), {
