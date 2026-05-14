@@ -125,13 +125,13 @@ export async function createCreditTopupSession(
         price_data: {
           currency: 'aud',
           product_data: { name: 'Message Credits' },
-          unit_amount: Math.round(amountAud * 100), // cents
+          unit_amount: Math.round(amountAud * 100),
         },
         quantity: 1,
       },
     ],
-    success_url: `${returnUrl}?topup=success`,
-    cancel_url: `${returnUrl}?topup=cancelled`,
+    success_url: `${returnUrl}?topup=success&session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url:  `${returnUrl}?topup=cancelled`,
     metadata: { type: 'credit_topup', amountAud: amountAud.toString() },
   })
 

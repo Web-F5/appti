@@ -2,17 +2,66 @@
 import type { Metadata } from 'next'
 import { requireSession } from '@/lib/auth/session'
 import { prisma } from '@/lib/prisma/client'
+import { stripe } from '@/lib/stripe/client'
 import { PLAN_CONFIG } from '@/types'
 import BillingClient from '@/components/dashboard/BillingClient'
 
 export const metadata: Metadata = { title: 'Billing' }
 export const dynamic = 'force-dynamic'  // Always fetch fresh data — no caching
 
-type Props = { searchParams: Promise<{ topup?: string; upgrade?: string }> }
+type Props = { searchParams: Promise<{ topup?: string; upgrade?: string; session_id?: string }> }
 
 export default async function BillingPage({ searchParams }: Props) {
   const session = await requireSession()
   const params  = await searchParams
+
+  // If returning from a successful top-up, verify with Stripe and credit balance
+  if (params.topup === 'success' && params.session_id) {
+    try {
+      const checkoutSession = await stripe.checkout.sessions.retrieve(params.session_id)
+
+      if (
+        checkoutSession.payment_status === 'paid' &&
+        checkoutSession.metadata?.type === 'credit_topup'
+      ) {
+        const amountAud = Number(checkoutSession.metadata.amountAud ?? 0)
+        const business  = await prisma.business.findUnique({
+          where: { slug: session.user.businessSlug },
+          select: { id: true, stripeCustomerId: true },
+        })
+
+        if (business && amountAud > 0) {
+          // Idempotent — only credit if this session hasn't been processed
+          const existing = await prisma.usageEvent.findFirst({
+            where: {
+              businessId:          business.id,
+              stripeUsageRecordId: params.session_id,
+            },
+          })
+
+          if (!existing) {
+            await prisma.business.update({
+              where: { id: business.id },
+              data:  { creditBalance: { increment: amountAud } },
+            })
+            // Record that we've processed this session
+            await prisma.usageEvent.create({
+              data: {
+                businessId:          business.id,
+                eventType:           'CREDIT_ADDED' as any,
+                cost:                0,
+                baseRate:            0,
+                stripeUsageRecordId: params.session_id,
+              },
+            })
+            console.log(`[billing] Credited $${amountAud} via topup-success for ${business.id}`)
+          }
+        }
+      }
+    } catch (err) {
+      console.error('[billing] Failed to verify top-up session:', err)
+    }
+  }
 
   const business = await prisma.business.findUnique({
     where: { slug: session.user.businessSlug },
