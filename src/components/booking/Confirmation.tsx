@@ -15,7 +15,18 @@ export default function Confirmation({ service, slot, clientName, staffMemberNam
         </svg>
       </div>
       <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--text-dark)' }}>You're booked, {clientName.split(' ')[0]}!</h2>
-      <p className="text-sm mb-8" style={{ color: 'var(--text-muted)' }}>A confirmation has been sent to your email with a calendar invite.</p>
+      <p className="text-sm mb-8" style={{ color: 'var(--text-muted)' }}>
+        A confirmation has been sent to your email with a calendar invite attached.
+      </p>
+
+      <div className="rounded-xl p-4 mb-6 text-left" style={{ background: 'var(--purple-light)', border: '0.5px solid var(--border)' }}>
+        <p className="text-sm font-semibold mb-2" style={{ color: 'var(--text-dark)' }}>📅 Adding to your calendar</p>
+        <ul className="text-sm space-y-1" style={{ color: 'var(--text-mid)' }}>
+          <li>• <strong>Calendar file:</strong> Open the email and double-click <em>appointment.ics</em> — then select &ldquo;Add to Calendar&rdquo;</li>
+          <li>• <strong>Google Calendar:</strong> Click the &ldquo;Open in Google Calendar&rdquo; button in the email</li>
+          <li>• <strong>Auto-sync:</strong> Use the calendar subscription link in the email to stay updated automatically</li>
+        </ul>
+      </div>
 
       <div className="rounded-2xl p-6 text-left max-w-sm mx-auto mb-6" style={{ background: 'var(--purple-soft)', border: '0.5px solid var(--border)' }}>
         <div className="space-y-3.5">

@@ -147,8 +147,11 @@ export async function createAppointment(
         clientName,
         businessName: business.name,
         serviceName:  service.name,
+        staffName:    result.staffMember.name,
         startsAt,
+        endsAt:       result.endsAt,
         icsContent,
+        businessSlug: business.slug,
       })
     } catch (emailErr) {
       // Log but don't fail — appointment is created, email is best-effort
