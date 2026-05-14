@@ -2,7 +2,7 @@
 // iCal generation and CalDAV helpers.
 // ical-generator builds RFC 5545 compliant .ics files.
 
-import ical, { ICalCalendarMethod } from 'ical-generator'
+import ical, { ICalCalendarMethod, ICalEventStatus } from 'ical-generator'
 import type { Appointment, Service, StaffMember, Client, Business } from '@prisma/client'
 
 export type AppointmentForIcal = Appointment & {
@@ -26,10 +26,9 @@ export function generateIcs(
     method: method === 'CANCEL' ? ICalCalendarMethod.CANCEL : ICalCalendarMethod.REQUEST,
   })
 
-  calendar.createEvent({
-    uid: appointment.icalUid,
+  const event = calendar.createEvent({
     start: appointment.startsAt,
-    end: appointment.endsAt,
+    end:   appointment.endsAt,
     summary: `${appointment.service.name} — ${business.name}`,
     description: [
       `Service: ${appointment.service.name}`,
@@ -39,18 +38,19 @@ export function generateIcs(
       .filter(Boolean)
       .join('\n'),
     organizer: {
-      name: business.name,
+      name:  business.name,
       email: process.env.RESEND_FROM_EMAIL ?? 'noreply@example.com',
     },
     attendees: [
       {
-        name: appointment.client.name,
+        name:  appointment.client.name,
         email: appointment.client.email,
-        rsvp: false,
+        rsvp:  false,
       },
     ],
-    status: method === 'CANCEL' ? 'CANCELLED' : 'CONFIRMED',
   })
+  if (appointment.icalUid) event.uid(appointment.icalUid)
+  event.status(method === 'CANCEL' ? ICalEventStatus.CANCELLED : ICalEventStatus.CONFIRMED)
 
   return calendar.toString()
 }
