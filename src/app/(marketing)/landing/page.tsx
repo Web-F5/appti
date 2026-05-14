@@ -84,8 +84,7 @@ export default function LandingPage() {
             <Link href="/login" style={{ padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>Sign in</Link>
             <Link href="/register" style={{ padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 600, background: '#E8845A', color: 'white', textDecoration: 'none' }}>Get started free</Link>
           </div>
-          {/* Mobile: just show the logo, no nav buttons — CTA is in the hero */}
-          <div className="nav-mobile" style={{ width: 40 }} />
+          {/* No buttons on mobile — CTAs are in the hero section */}
         </div>
       </nav>
 

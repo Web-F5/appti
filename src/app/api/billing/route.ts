@@ -88,18 +88,23 @@ export async function POST(req: NextRequest) {
     }
 
     if (data.action === 'upgrade') {
-      const url = await createOrUpdateSubscription(
+      const result = await createOrUpdateSubscription(
         stripeCustomerId,
         business.stripeSubId,
         data.plan,
         returnUrl
       )
-      // If updating existing subscription (no Stripe redirect), wait briefly
-      // for webhook to process before the client reloads the billing page
-      if (url.includes('upgrade=success')) {
-        await new Promise(resolve => setTimeout(resolve, 2000))
+
+      // If the subscription was updated in place (no Stripe redirect),
+      // update the database directly — don't wait for webhook
+      if (result.includes('upgrade=success')) {
+        await prisma.business.update({
+          where: { id: business.id },
+          data:  { plan: data.plan },
+        })
       }
-      return apiSuccess({ url })
+
+      return apiSuccess({ url: result })
     }
 
     if (data.action === 'portal') {
