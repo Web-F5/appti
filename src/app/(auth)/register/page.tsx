@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import PasswordInput from '@/components/auth/PasswordInput'
 
 const TIMEZONES = [
   { value: 'Australia/Sydney',    label: 'Sydney / Melbourne (AEST)' },
@@ -89,14 +90,10 @@ export default function RegisterPage() {
                 {TIMEZONES.map(tz => <option key={tz.value} value={tz.value}>{tz.label}</option>)}
               </select>
             </div>
-            <div>
-              <label className={labelClass} style={{ color: 'var(--text-dark)' }}>Password <span style={{ color: 'var(--orange)' }}>*</span></label>
-              <input type="password" value={form.password} onChange={e => patch({ password: e.target.value })} required placeholder="Min. 8 characters" className={inputClass} />
-            </div>
-            <div>
-              <label className={labelClass} style={{ color: 'var(--text-dark)' }}>Confirm password <span style={{ color: 'var(--orange)' }}>*</span></label>
-              <input type="password" value={form.confirmPassword} onChange={e => patch({ confirmPassword: e.target.value })} required placeholder="••••••••" className={inputClass} />
-            </div>
+            <PasswordInput id="password" label="Password" value={form.password}
+              onChange={v => patch({ password: v })} required placeholder="Min. 8 characters" />
+            <PasswordInput id="confirmPassword" label="Confirm password" value={form.confirmPassword}
+              onChange={v => patch({ confirmPassword: v })} required />
 
             <button type="submit" disabled={loading} className="btn-primary w-full mt-2" style={{ color: 'white' }}>
               {loading ? 'Creating account…' : 'Create account'}

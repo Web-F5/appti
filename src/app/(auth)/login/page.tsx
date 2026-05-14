@@ -1,10 +1,11 @@
 'use client'
-
+'use client'
 import { Suspense } from 'react'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import PasswordInput from '@/components/auth/PasswordInput'
 
 function LoginForm() {
   const router = useRouter()
@@ -51,14 +52,13 @@ function LoginForm() {
           <input type="email" value={email} onChange={e => setEmail(e.target.value)}
             required placeholder="you@example.com" className="input" />
         </div>
-        <div>
-          <div className="flex items-center justify-between mb-1.5">
-            <label className="text-sm font-medium" style={{ color: 'var(--text-dark)' }}>Password</label>
-            <Link href="/forgot-password" className="text-xs" style={{ color: 'var(--orange)' }}>Forgot password?</Link>
-          </div>
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)}
-            required placeholder="••••••••" className="input" />
-        </div>
+        <PasswordInput
+          id="password"
+          label="Password"
+          value={password}
+          onChange={setPassword}
+          required
+        />
         <button type="submit" disabled={loading} className="btn-primary w-full mt-2" style={{ color: 'white' }}>
           {loading ? (
             <span className="flex items-center justify-center gap-2">
