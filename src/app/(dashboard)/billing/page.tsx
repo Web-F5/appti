@@ -6,6 +6,7 @@ import { PLAN_CONFIG } from '@/types'
 import BillingClient from '@/components/dashboard/BillingClient'
 
 export const metadata: Metadata = { title: 'Billing' }
+export const dynamic = 'force-dynamic'  // Always fetch fresh data — no caching
 
 type Props = { searchParams: Promise<{ topup?: string; upgrade?: string }> }
 

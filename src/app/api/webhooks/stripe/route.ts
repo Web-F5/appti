@@ -39,13 +39,20 @@ export async function POST(req: NextRequest) {
       const customerId = sub.customer as string
       const plan       = getPlanFromSubscription(sub)
       console.log('[Stripe webhook] Subscription event, customer:', customerId)
+      console.log('[Stripe webhook] Subscription status:', sub.status)
       console.log('[Stripe webhook] Subscription price ID:', sub.items.data[0]?.price.id)
       console.log('[Stripe webhook] STARTER price env:', process.env.STRIPE_PRICE_STARTER)
       console.log('[Stripe webhook] PRO price env:', process.env.STRIPE_PRICE_PRO)
       console.log('[Stripe webhook] Resolved plan:', plan)
-      console.log('[Stripe webhook] current_period_end:', sub.current_period_end, 'billing_cycle_anchor:', (sub as any).billing_cycle_anchor)
+
       if (!plan) {
         console.log('[Stripe webhook] Plan not matched — check STRIPE_PRICE_STARTER/PRO env vars')
+        break
+      }
+
+      // Only update for active subscriptions
+      if (sub.status !== 'active' && sub.status !== 'trialing') {
+        console.log('[Stripe webhook] Subscription not active, skipping plan update. Status:', sub.status)
         break
       }
 
@@ -61,7 +68,7 @@ export async function POST(req: NextRequest) {
               : null,
         },
       })
-      console.log('[Stripe webhook] Subscription updated, rows affected:', updated.count)
+      console.log('[Stripe webhook] Plan updated to', plan, '— rows affected:', updated.count)
       break
     }
 

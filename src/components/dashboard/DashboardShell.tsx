@@ -52,7 +52,7 @@ export default function DashboardShell({ children, businessName, email }: Props)
     <div className="min-h-screen flex flex-col lg:flex-row" style={{ background: 'var(--surface)' }}>
 
       {/* ── Desktop sidebar ─────────────────────────────────────── */}
-      <aside className="hidden lg:flex w-56 flex-col shrink-0" style={{ background: 'var(--purple-dark)' }}>
+      <aside className="hidden lg:flex w-56 flex-col shrink-0 sticky top-0 h-screen" style={{ background: 'var(--purple-dark)' }}>
         <div className="h-16 flex items-center px-5 gap-3" style={{ borderBottom: '0.5px solid rgba(255,255,255,0.08)' }}>
           <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'var(--orange)' }}>
             <CalendarIcon/>

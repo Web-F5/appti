@@ -84,10 +84,8 @@ export default function LandingPage() {
             <Link href="/login" style={{ padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>Sign in</Link>
             <Link href="/register" style={{ padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 600, background: '#E8845A', color: 'white', textDecoration: 'none' }}>Get started free</Link>
           </div>
-          <div className="nav-mobile" style={{ gap: 8 }}>
-            <Link href="/login" style={{ padding: '7px 12px', borderRadius: 8, fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.8)', textDecoration: 'none', border: '0.5px solid rgba(255,255,255,0.2)' }}>Sign in</Link>
-            <Link href="/register" style={{ padding: '7px 12px', borderRadius: 8, fontSize: 13, fontWeight: 600, background: '#E8845A', color: 'white', textDecoration: 'none' }}>Sign up</Link>
-          </div>
+          {/* Mobile: just show the logo, no nav buttons — CTA is in the hero */}
+          <div className="nav-mobile" style={{ width: 40 }} />
         </div>
       </nav>
 
@@ -110,7 +108,10 @@ export default function LandingPage() {
                 <Link href="/register" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 700, background: '#E8845A', color: 'white', textDecoration: 'none' }}>
                   Start for free →
                 </Link>
-                <Link href="/book/demo-trades" target="_blank" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: 'rgba(255,255,255,0.1)', color: 'white', textDecoration: 'none', border: '0.5px solid rgba(255,255,255,0.2)' }}>
+                <Link href="/login" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: 'rgba(255,255,255,0.1)', color: 'white', textDecoration: 'none', border: '0.5px solid rgba(255,255,255,0.2)' }}>
+                  Sign in
+                </Link>
+                <Link href="/book/demo-trades" target="_blank" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.7)', textDecoration: 'none', border: '0.5px solid rgba(255,255,255,0.15)' }}>
                   See demo
                 </Link>
               </div>

@@ -94,6 +94,11 @@ export async function POST(req: NextRequest) {
         data.plan,
         returnUrl
       )
+      // If updating existing subscription (no Stripe redirect), wait briefly
+      // for webhook to process before the client reloads the billing page
+      if (url.includes('upgrade=success')) {
+        await new Promise(resolve => setTimeout(resolve, 2000))
+      }
       return apiSuccess({ url })
     }
 

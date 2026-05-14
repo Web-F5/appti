@@ -177,9 +177,17 @@ export default function RemindersManager({ business }: { business: any }) {
   const { toast, showToast } = useToast()
   const [templates, setTemplates] = useState<ReminderTemplate[]>(business.reminderTemplates ?? [])
 
-  const plan       = business.plan ?? 'PAYG'
-  const smsRate    = plan === 'PRO' ? '$0.060' : plan === 'STARTER' ? '$0.080' : '$0.120'
-  const emailRate  = plan === 'PRO' ? '$0.0020' : plan === 'STARTER' ? '$0.0030' : '$0.0050'
+  const plan      = business.plan ?? 'PAYG'
+  const smsRate   = plan === 'PRO'
+    ? (process.env.NEXT_PUBLIC_RATE_SMS_PRO     ?? '0.060')
+    : plan === 'STARTER'
+    ? (process.env.NEXT_PUBLIC_RATE_SMS_STARTER ?? '0.080')
+    : (process.env.NEXT_PUBLIC_RATE_SMS_PAYG    ?? '0.120')
+  const emailRate = plan === 'PRO'
+    ? (process.env.NEXT_PUBLIC_RATE_EMAIL_PRO     ?? '0.0020')
+    : plan === 'STARTER'
+    ? (process.env.NEXT_PUBLIC_RATE_EMAIL_STARTER ?? '0.0030')
+    : (process.env.NEXT_PUBLIC_RATE_EMAIL_PAYG    ?? '0.0050')
 
   const billingNote = plan === 'PAYG'
     ? `Each message sent is charged directly to your credit balance — SMS: ${smsRate}/message (max 160 characters), Email: ${emailRate}/message.`
