@@ -36,7 +36,7 @@ export default function RegisterPage() {
       if (!res.ok) { setError(data.error ?? 'Registration failed'); setLoading(false); return }
       const result = await signIn('credentials', { email: form.email, password: form.password, redirect: false })
       if (result?.error) { router.push('/login?registered=1'); return }
-      router.push('/dashboard')
+      router.push('/onboarding')
       router.refresh()
     } catch { setError('Network error — please try again'); setLoading(false) }
   }

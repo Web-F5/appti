@@ -291,6 +291,16 @@ export default function LandingPage() {
             </div>
             <span style={{ fontWeight: 700, color: 'white', fontSize: 15 }}>{APP_NAME}</span>
           </div>
+          <div style={{ display: 'flex', gap: 24 }}>
+            {[
+              { label: 'Privacy Policy',   href: '/privacy' },
+              { label: 'Terms of Service', href: '/terms'   },
+              { label: 'Help',             href: '/help'    },
+              { label: 'Contact',          href: '/contact' },
+            ].map(l => (
+              <Link key={l.href} href={l.href} style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>{l.label}</Link>
+            ))}
+          </div>
           <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.3)', margin: 0 }}>© 2026 {APP_NAME}. All rights reserved.</p>
         </div>
       </footer>

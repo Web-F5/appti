@@ -192,10 +192,11 @@ export default async function DashboardPage() {
             <p className="text-sm font-semibold mb-3 px-1" style={{ color: 'var(--text-dark)' }}>Quick actions</p>
             <div className="space-y-0.5">
               {[
-                { href: '/services', label: 'Manage services' },
-                { href: '/staff',    label: 'Manage staff'    },
-                { href: '/clients',  label: 'View clients'    },
-                { href: '/settings', label: 'Settings'        },
+                { href: '/onboarding', label: 'Setup guide'      },
+                { href: '/services',   label: 'Manage services'  },
+                { href: '/staff',      label: 'Manage staff'     },
+                { href: '/clients',    label: 'View clients'     },
+                { href: '/settings',   label: 'Settings'         },
               ].map(link => (
                 <Link key={link.href} href={link.href}
                   className="flex items-center justify-between px-2 py-2 rounded-lg text-sm transition-colors hover:bg-purple-50"
