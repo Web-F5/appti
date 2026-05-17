@@ -1,17 +1,23 @@
 // src/app/api/calendar/[businessSlug]/feed.ics/route.ts
-// Serves a read-only iCal feed for a business.
-// Any calendar app (Apple Calendar, Thunderbird, Google) can subscribe to this URL.
-// URL: /api/calendar/demo-trades/feed.ics
+// Serves a read-only iCal feed for a business — for the business owner only.
+// Requires a token query param: /api/calendar/demo-trades/feed.ics?token=xxx
+// The token is the business ID (set in dashboard settings for calendar subscription).
 
 import { NextRequest } from 'next/server'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth/config'
 import { prisma } from '@/lib/prisma/client'
 import { generateIcs } from '@/lib/caldav/ical'
 import ical from 'ical-generator'
 
 type Params = { params: Promise<{ businessSlug: string }> }
 
-export async function GET(_req: NextRequest, { params }: Params) {
+export async function GET(req: NextRequest, { params }: Params) {
   const { businessSlug } = await params
+
+  // Allow access via session (dashboard) or token (calendar app subscription)
+  const session  = await getServerSession(authOptions)
+  const token    = req.nextUrl.searchParams.get('token')
 
   const business = await prisma.business.findUnique({
     where: { slug: businessSlug },
@@ -19,6 +25,14 @@ export async function GET(_req: NextRequest, { params }: Params) {
 
   if (!business) {
     return new Response('Business not found', { status: 404 })
+  }
+
+  // Auth check: must be logged in as this business, or provide business ID as token
+  const isOwner      = session?.user?.businessSlug === businessSlug
+  const hasValidToken = token === business.id
+
+  if (!isOwner && !hasValidToken) {
+    return new Response('Unauthorised', { status: 401 })
   }
 
   // Fetch upcoming confirmed appointments (30 days back, 90 days forward)

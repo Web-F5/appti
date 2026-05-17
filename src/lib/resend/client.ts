@@ -109,7 +109,6 @@ export async function sendConfirmationEmail(params: {
     end:     endDate,
     details: `Booked via ${businessName}`,
   })
-  const feedUrl   = `${appUrl}/api/calendar/${businessSlug}/feed.ics`
 
   // ── Plain text version ──────────────────────────────────────────────────────
   const text = [
@@ -132,23 +131,17 @@ export async function sendConfirmationEmail(params: {
     'Option 2 — Add directly to Google Calendar:',
     gcalUrl,
     '',
-    'Option 3 — Subscribe for automatic updates:',
-    `Copy this link into your calendar app to stay in sync automatically: ${feedUrl}`,
-    '  Apple Calendar: File > New Calendar Subscription',
-    '  Outlook: Add calendar > From internet',
-    '  Thunderbird: New Calendar > On the network',
-    '',
     `See you soon,`,
     businessName,
   ].filter(Boolean).join('\n')
 
   // ── HTML version ────────────────────────────────────────────────────────────
   const htmlContent = `
-    <p style="margin:0 0 8px;font-size:16px;color:#1A1035;">Hi ${clientName},</p>
-    <p style="margin:0 0 24px;font-size:16px;color:#4A3F7A;">Your booking is confirmed! Here are the details:</p>
+    <p style="margin:0 0 8px 0;font-size:16px;color:#1A1035;font-family:Arial,Helvetica,sans-serif;">Hi ${clientName},</p>
+    <p style="margin:0 0 24px 0;font-size:16px;color:#4A3F7A;font-family:Arial,Helvetica,sans-serif;">Your booking is confirmed! Here are the details:</p>
 
     <!-- Booking details box -->
-    <table width="100%" cellpadding="0" cellspacing="0" style="background:#EDE9FF;border-radius:12px;margin-bottom:24px;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#EDE9FF;border-radius:12px;margin-bottom:24px;">
       <tr><td style="padding:20px 24px;">
         ${([ 
           ['Service',  serviceName],
@@ -156,7 +149,7 @@ export async function sendConfirmationEmail(params: {
           ['Date',     startsAt.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })],
           ['Time',     timeStr],
         ].filter((row): row is string[] => row !== null)).map(([label, value]) => `
-          <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
+          <table border="0" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
             <tr>
               <td width="80" style="font-size:12px;font-weight:bold;color:#8B82B0;text-transform:uppercase;letter-spacing:0.05em;font-family:Arial,Helvetica,sans-serif;">${label}</td>
               <td style="font-size:14px;font-weight:bold;color:#1A1035;font-family:Arial,Helvetica,sans-serif;">${value}</td>
@@ -182,28 +175,13 @@ export async function sendConfirmationEmail(params: {
       </tr>
     </table>
 
-    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:8px;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:28px;">
       <tr>
         <td style="padding:14px 16px;background-color:#F5F3FB;border-radius:10px;font-size:13px;color:#4A3F7A;font-family:Arial,Helvetica,sans-serif;">
           <p style="margin:0 0 10px 0;font-weight:bold;color:#1A1035;font-family:Arial,Helvetica,sans-serif;">Add directly to Google Calendar</p>
           <a href="${gcalUrl}" style="display:inline-block;background-color:#E8845A;color:#ffffff;text-decoration:none;font-size:13px;font-weight:bold;padding:10px 18px;border-radius:8px;font-family:Arial,Helvetica,sans-serif;">
             Open in Google Calendar
           </a>
-        </td>
-      </tr>
-    </table>
-
-    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:28px;">
-      <tr>
-        <td style="padding:14px 16px;background-color:#F5F3FB;border-radius:10px;font-size:13px;color:#4A3F7A;font-family:Arial,Helvetica,sans-serif;">
-          <p style="margin:0 0 6px 0;font-weight:bold;color:#1A1035;font-family:Arial,Helvetica,sans-serif;">Subscribe for automatic updates</p>
-          <p style="margin:0 0 8px 0;color:#555555;font-family:Arial,Helvetica,sans-serif;line-height:1.5;">Copy this link into your calendar app and your bookings will stay in sync automatically:</p>
-          <p style="margin:0 0 8px 0;font-size:11px;background-color:#EDE9FF;padding:8px 12px;border-radius:6px;word-break:break-all;color:#2D1B69;font-family:Courier,monospace;">${feedUrl}</p>
-          <p style="margin:0;color:#888888;font-size:12px;font-family:Arial,Helvetica,sans-serif;line-height:1.6;">
-            <strong>Apple Calendar:</strong> File &gt; New Calendar Subscription<br />
-            <strong>Outlook:</strong> Add calendar &gt; From internet<br />
-            <strong>Thunderbird:</strong> New Calendar &gt; On the network
-          </p>
         </td>
       </tr>
     </table>

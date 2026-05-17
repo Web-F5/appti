@@ -216,6 +216,12 @@ export default function BusinessProfileForm({ business }: { business: any }) {
               /book/{business.slug}
             </a>
           </p>
+          <p className="text-sm mb-4" style={{ color: 'var(--text-muted)' }}>
+            Calendar feed (subscribe in your calendar app):{' '}
+            <span className="font-mono text-xs" style={{ color: 'var(--purple-dark)', wordBreak: 'break-all' }}>
+              {typeof window !== 'undefined' ? window.location.origin : ''}/api/calendar/{business.slug}/feed.ics?token={business.id}
+            </span>
+          </p>
           <SaveButton loading={loading} />
         </div>
       </form>
