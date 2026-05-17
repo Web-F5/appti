@@ -20,32 +20,42 @@ export type EmailResult = {
 
 // ── HTML email wrapper ────────────────────────────────────────────────────────
 // Inline styles only — external CSS is blocked by most email clients.
+// Uses table-based layout for maximum compatibility across all email clients.
 
 function htmlWrap(content: string, businessName: string): string {
-  return `<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#F5F3FB;font-family:system-ui,-apple-system,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#F5F3FB;padding:32px 16px;">
-    <tr><td align="center">
-      <table width="100%" style="max-width:560px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #E2DCEF;">
-        <!-- Header -->
-        <tr><td style="background:#2D1B69;padding:24px 32px;">
-          <p style="margin:0;font-size:20px;font-weight:700;color:#ffffff;">${businessName}</p>
-        </td></tr>
-        <!-- Body -->
-        <tr><td style="padding:32px;">
-          ${content}
-        </td></tr>
-        <!-- Footer -->
-        <tr><td style="background:#F5F3FB;padding:20px 32px;border-top:1px solid #E2DCEF;">
-          <p style="margin:0;font-size:12px;color:#8B82B0;">
-            This message was sent by ${businessName} via Appti booking.
-            If you did not make this booking, please ignore this email.
-          </p>
-        </td></tr>
-      </table>
-    </td></tr>
+  return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Message from ${businessName}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F5F3FB;font-family:Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#F5F3FB;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="560" style="max-width:560px;background-color:#ffffff;border-radius:12px;border:1px solid #E2DCEF;">
+          <tr>
+            <td style="background-color:#2D1B69;padding:24px 32px;border-radius:12px 12px 0 0;">
+              <p style="margin:0;font-size:20px;font-weight:bold;color:#ffffff;font-family:Arial,Helvetica,sans-serif;">${businessName}</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:32px;">
+              ${content}
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#F5F3FB;padding:20px 32px;border-radius:0 0 12px 12px;border-top:1px solid #E2DCEF;">
+              <p style="margin:0;font-size:12px;color:#8B82B0;font-family:Arial,Helvetica,sans-serif;">
+                This message was sent by ${businessName} via Appti booking.
+                If you did not make this booking, please ignore this email.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
   </table>
 </body>
 </html>`
@@ -114,17 +124,19 @@ export async function sendConfirmationEmail(params: {
     '',
     '── ADDING TO YOUR CALENDAR ──',
     '',
-    'Option 1 — Calendar file (works with all calendar apps):',
-    'A calendar file (.ics) is attached to this email.',
-    'Double-click it and choose "Add to Calendar" when prompted.',
+    'Option 1 — Calendar file (.ics) attached:',
+    'A calendar invite (.ics file) is attached to this email.',
+    'Click or double-click it to open it — your calendar app will ask you to add the appointment.',
+    'Works with Apple Calendar, Outlook, Google Calendar, and most calendar apps.',
     '',
-    'Option 2 — Google Calendar:',
+    'Option 2 — Add directly to Google Calendar:',
     gcalUrl,
     '',
-    'Option 3 — Subscribe (auto-updates with future changes):',
-    `Copy this link and subscribe in your calendar app: ${feedUrl}`,
-    '  Apple Calendar: File → New Calendar Subscription',
-    '  Outlook: Add calendar → From internet',
+    'Option 3 — Subscribe for automatic updates:',
+    `Copy this link into your calendar app to stay in sync automatically: ${feedUrl}`,
+    '  Apple Calendar: File > New Calendar Subscription',
+    '  Outlook: Add calendar > From internet',
+    '  Thunderbird: New Calendar > On the network',
     '',
     `See you soon,`,
     businessName,
@@ -154,46 +166,49 @@ export async function sendConfirmationEmail(params: {
     </table>
 
     <!-- Calendar options -->
-    <p style="margin:0 0 12px;font-size:14px;font-weight:700;color:#1A1035;">Add to your calendar</p>
+    <p style="margin:0 0 12px 0;font-size:14px;font-weight:bold;color:#1A1035;font-family:Arial,Helvetica,sans-serif;">Add to your calendar</p>
 
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:8px;">
       <tr>
-        <td style="padding:12px 16px;background:#F5F3FB;border-radius:10px;font-size:13px;color:#4A3F7A;">
-          <p style="margin:0 0 4px;font-weight:600;color:#1A1035;">📎 Calendar file attached</p>
-          <p style="margin:0;color:#8B82B0;">An <strong>appointment.ics</strong> file is attached to this email.
-          Double-click it and select <strong>"Add to Calendar"</strong> when prompted.
-          Works with Apple Calendar, Outlook, Google Calendar, and most other apps.</p>
-        </td>
-      </tr>
-    </table>
-
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px;">
-      <tr>
-        <td style="padding:12px 16px;background:#F5F3FB;border-radius:10px;font-size:13px;color:#4A3F7A;">
-          <p style="margin:0 0 8px;font-weight:600;color:#1A1035;">📅 Add directly to Google Calendar</p>
-          <a href="${gcalUrl}" style="display:inline-block;background:#E8845A;color:#ffffff;text-decoration:none;font-size:13px;font-weight:600;padding:8px 16px;border-radius:8px;">
-            Open in Google Calendar →
-          </a>
-        </td>
-      </tr>
-    </table>
-
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
-      <tr>
-        <td style="padding:12px 16px;background:#F5F3FB;border-radius:10px;font-size:13px;color:#4A3F7A;">
-          <p style="margin:0 0 4px;font-weight:600;color:#1A1035;">🔄 Subscribe for auto-updates</p>
-          <p style="margin:0 0 6px;color:#8B82B0;">Copy this link to subscribe in your calendar app — appointments stay in sync automatically:</p>
-          <p style="margin:0 0 6px;font-family:monospace;font-size:12px;background:#EDE9FF;padding:6px 10px;border-radius:6px;word-break:break-all;color:#2D1B69;">${feedUrl}</p>
-          <p style="margin:0;color:#8B82B0;font-size:12px;">
-            <strong>Apple Calendar:</strong> File → New Calendar Subscription<br>
-            <strong>Outlook:</strong> Add calendar → From internet<br>
-            <strong>Thunderbird:</strong> New Calendar → On the network
+        <td style="padding:14px 16px;background-color:#F5F3FB;border-radius:10px;font-size:13px;color:#4A3F7A;font-family:Arial,Helvetica,sans-serif;">
+          <p style="margin:0 0 6px 0;font-weight:bold;color:#1A1035;font-family:Arial,Helvetica,sans-serif;">Calendar invite attached (.ics file)</p>
+          <p style="margin:0;color:#555555;font-family:Arial,Helvetica,sans-serif;line-height:1.5;">
+            A calendar invite file (<strong>appointment.ics</strong>) is attached to this email.
+            Click or double-click it to open it &mdash; your calendar app will prompt you to add the appointment.
+            This works with Apple Calendar, Outlook, Google Calendar, and most other calendar apps.
+            You can also use the <strong>Open in Google Calendar</strong> button below as an alternative.
           </p>
         </td>
       </tr>
     </table>
 
-    <p style="margin:0;font-size:14px;color:#4A3F7A;">See you soon,<br><strong>${businessName}</strong></p>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:8px;">
+      <tr>
+        <td style="padding:14px 16px;background-color:#F5F3FB;border-radius:10px;font-size:13px;color:#4A3F7A;font-family:Arial,Helvetica,sans-serif;">
+          <p style="margin:0 0 10px 0;font-weight:bold;color:#1A1035;font-family:Arial,Helvetica,sans-serif;">Add directly to Google Calendar</p>
+          <a href="${gcalUrl}" style="display:inline-block;background-color:#E8845A;color:#ffffff;text-decoration:none;font-size:13px;font-weight:bold;padding:10px 18px;border-radius:8px;font-family:Arial,Helvetica,sans-serif;">
+            Open in Google Calendar
+          </a>
+        </td>
+      </tr>
+    </table>
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:28px;">
+      <tr>
+        <td style="padding:14px 16px;background-color:#F5F3FB;border-radius:10px;font-size:13px;color:#4A3F7A;font-family:Arial,Helvetica,sans-serif;">
+          <p style="margin:0 0 6px 0;font-weight:bold;color:#1A1035;font-family:Arial,Helvetica,sans-serif;">Subscribe for automatic updates</p>
+          <p style="margin:0 0 8px 0;color:#555555;font-family:Arial,Helvetica,sans-serif;line-height:1.5;">Copy this link into your calendar app and your bookings will stay in sync automatically:</p>
+          <p style="margin:0 0 8px 0;font-size:11px;background-color:#EDE9FF;padding:8px 12px;border-radius:6px;word-break:break-all;color:#2D1B69;font-family:Courier,monospace;">${feedUrl}</p>
+          <p style="margin:0;color:#888888;font-size:12px;font-family:Arial,Helvetica,sans-serif;line-height:1.6;">
+            <strong>Apple Calendar:</strong> File &gt; New Calendar Subscription<br />
+            <strong>Outlook:</strong> Add calendar &gt; From internet<br />
+            <strong>Thunderbird:</strong> New Calendar &gt; On the network
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <p style="margin:0;font-size:14px;color:#4A3F7A;font-family:Arial,Helvetica,sans-serif;">See you soon,<br /><strong>${businessName}</strong></p>
   `
 
   try {
