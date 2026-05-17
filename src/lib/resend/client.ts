@@ -150,16 +150,16 @@ export async function sendConfirmationEmail(params: {
     <!-- Booking details box -->
     <table width="100%" cellpadding="0" cellspacing="0" style="background:#EDE9FF;border-radius:12px;margin-bottom:24px;">
       <tr><td style="padding:20px 24px;">
-        ${[
+        ${([ 
           ['Service',  serviceName],
           staffName ? ['With', staffName] : null,
           ['Date',     startsAt.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })],
           ['Time',     timeStr],
-        ].filter(Boolean).map(([label, value]) => `
+        ].filter((row): row is string[] => row !== null)).map(([label, value]) => `
           <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
             <tr>
-              <td width="80" style="font-size:12px;font-weight:600;color:#8B82B0;text-transform:uppercase;letter-spacing:0.05em;">${label}</td>
-              <td style="font-size:14px;font-weight:600;color:#1A1035;">${value}</td>
+              <td width="80" style="font-size:12px;font-weight:bold;color:#8B82B0;text-transform:uppercase;letter-spacing:0.05em;font-family:Arial,Helvetica,sans-serif;">${label}</td>
+              <td style="font-size:14px;font-weight:bold;color:#1A1035;font-family:Arial,Helvetica,sans-serif;">${value}</td>
             </tr>
           </table>`).join('')}
       </td></tr>
