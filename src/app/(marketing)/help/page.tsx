@@ -76,7 +76,7 @@ const SECTIONS = [
       },
       {
         q: 'What are the message rates?',
-        a: `Pay As You Go: SMS $0.12/message, Email $0.005/message. Starter ($29/month): 150 SMS and 500 emails included, then $0.08/SMS and $0.003/email. Pro ($79/month): 500 SMS and 2,000 emails included, then $0.06/SMS and $0.002/email.`,
+        a: `Pay As You Go: SMS $${process.env.NEXT_PUBLIC_RATE_SMS_PAYG ?? '0.120'}/message, Email $${process.env.NEXT_PUBLIC_RATE_EMAIL_PAYG ?? '0.0050'}/message. Starter ($29/month): ${process.env.BUNDLE_SMS_STARTER ?? '150'} SMS and ${process.env.BUNDLE_EMAIL_STARTER ?? '500'} emails included, then $${process.env.NEXT_PUBLIC_RATE_SMS_STARTER ?? '0.080'}/SMS and $${process.env.NEXT_PUBLIC_RATE_EMAIL_STARTER ?? '0.0030'}/email. Pro ($79/month): ${process.env.BUNDLE_SMS_PRO ?? '500'} SMS and ${process.env.BUNDLE_EMAIL_PRO ?? '2,000'} emails included, then $${process.env.NEXT_PUBLIC_RATE_SMS_PRO ?? '0.060'}/SMS and $${process.env.NEXT_PUBLIC_RATE_EMAIL_PRO ?? '0.0020'}/email.`,
       },
       {
         q: 'Can I upgrade or downgrade my plan?',

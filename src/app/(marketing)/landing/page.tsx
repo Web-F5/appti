@@ -9,6 +9,20 @@ export const metadata: Metadata = {
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME ?? 'Appti'
 
+// Pricing from environment variables
+const RATES = {
+  smsPAYG:    process.env.NEXT_PUBLIC_RATE_SMS_PAYG    ?? '0.120',
+  smsStarter: process.env.NEXT_PUBLIC_RATE_SMS_STARTER ?? '0.080',
+  smsPro:     process.env.NEXT_PUBLIC_RATE_SMS_PRO     ?? '0.060',
+  emailPAYG:    process.env.NEXT_PUBLIC_RATE_EMAIL_PAYG    ?? '0.0050',
+  emailStarter: process.env.NEXT_PUBLIC_RATE_EMAIL_STARTER ?? '0.0030',
+  emailPro:     process.env.NEXT_PUBLIC_RATE_EMAIL_PRO     ?? '0.0020',
+  bundleSmsStarter:   process.env.BUNDLE_SMS_STARTER   ?? '150',
+  bundleEmailStarter: process.env.BUNDLE_EMAIL_STARTER ?? '500',
+  bundleSmsPro:       process.env.BUNDLE_SMS_PRO       ?? '500',
+  bundleEmailPro:     process.env.BUNDLE_EMAIL_PRO     ?? '2000',
+}
+
 const FEATURES = [
   { icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z', title: 'Online booking, 24/7', body: 'Clients book themselves from any device. You wake up to a full schedule without lifting a finger.' },
   { icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z', title: 'SMS & email reminders', body: 'Automated reminders before every appointment cut no-shows dramatically. Pay only for messages sent.' },
@@ -18,10 +32,28 @@ const FEATURES = [
   { icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14', title: 'Embeddable widget', body: 'Drop a booking widget onto your existing website with a single line of code.' },
 ]
 
-const PLANS = [
-  { name: 'Pay as you go', price: '$0', period: '/ month', desc: 'No commitment. Top up credits and pay only for messages sent.', sms: '$0.12 per SMS', email: '$0.005 per email', cta: 'Start free', featured: false },
-  { name: 'Starter', price: '$29', period: '/ month', desc: '150 SMS and 500 emails included. Cheaper rates on top-ups.', sms: '$0.08 per SMS over bundle', email: '$0.003 per email over bundle', cta: 'Start free trial', featured: true },
-  { name: 'Pro', price: '$79', period: '/ month', desc: '500 SMS and 2,000 emails included. Lowest rates, white-label branding.', sms: '$0.06 per SMS over bundle', email: '$0.002 per email over bundle', cta: 'Start free trial', featured: false },
+const getPLANS = (r: typeof RATES) => [
+  {
+    name: 'Pay as you go', price: '$0', period: '/ month',
+    desc: 'No commitment. Top up credits and pay only for messages sent.',
+    sms: `$${r.smsPAYG} per SMS`,
+    email: `$${r.emailPAYG} per email`,
+    cta: 'Start free', featured: false,
+  },
+  {
+    name: 'Starter', price: '$29', period: '/ month',
+    desc: `${r.bundleSmsStarter} SMS and ${r.bundleEmailStarter} emails included. Cheaper rates on top-ups.`,
+    sms: `$${r.smsStarter} per SMS over bundle`,
+    email: `$${r.emailStarter} per email over bundle`,
+    cta: 'Start free trial', featured: true,
+  },
+  {
+    name: 'Pro', price: '$79', period: '/ month',
+    desc: `${r.bundleSmsPro} SMS and ${r.bundleEmailPro} emails included. Lowest rates, white-label branding.`,
+    sms: `$${r.smsPro} per SMS over bundle`,
+    email: `$${r.emailPro} per email over bundle`,
+    cta: 'Start free trial', featured: false,
+  },
 ]
 
 const TESTIMONIALS = [
@@ -31,6 +63,7 @@ const TESTIMONIALS = [
 ]
 
 export default function LandingPage() {
+  const PLANS = getPLANS(RATES)
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', background: '#F5F3FB', color: '#1A1035' }}>
 
