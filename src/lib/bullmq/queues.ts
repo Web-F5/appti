@@ -11,6 +11,13 @@ export const redisConnection = new IORedis(process.env.REDIS_URL ?? 'redis://loc
   maxRetriesPerRequest: null, // required by BullMQ
 })
 
+// ── Raw Redis client for health checks and heartbeat ─────────────────────────
+
+export const redis = new IORedis(process.env.REDIS_URL ?? 'redis://localhost:6379', {
+  maxRetriesPerRequest: null,
+  enableReadyCheck:     false,
+})
+
 // ── Job data types ────────────────────────────────────────────────────────────
 
 export type ReminderJobData = {
