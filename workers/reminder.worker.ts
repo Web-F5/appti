@@ -6,9 +6,10 @@ import { Worker, Job } from 'bullmq'
 import { prisma } from '../src/lib/prisma/client'
 import { sendSms } from '../src/lib/mobilemessage/client'
 import { sendEmail } from '../src/lib/resend/client'
-import { redisConnection, QUEUE_NAMES, type ReminderJobData } from '../src/lib/bullmq/queues'
+import { redisConnection, QUEUE_NAMES, type ReminderJobData, redis } from '../src/lib/bullmq/queues'
 import { getRateForPlan } from '../src/lib/stripe/client'
 import { PLAN_CONFIG } from '../src/types'
+
 
 // ── Bundle usage helper ───────────────────────────────────────────────────────
 
@@ -46,6 +47,21 @@ async function getBundleUsedThisMonth(
 
   return count
 }
+
+// ── Heartbeat ─────────────────────────────────────────────────────────────────
+const HEARTBEAT_INTERVAL_MS = Number(process.env.HEALTH_CHECK_INTERVAL_MINS ?? 5) * 60 * 1000
+
+async function writeHeartbeat() {
+  try {
+    await redis.set('worker:heartbeat', new Date().toISOString(), 'EX', 3600)
+    console.log('[Worker] Heartbeat written:', new Date().toISOString())
+  } catch (err) {
+    console.error('[Worker] Failed to write heartbeat:', err)
+  }
+}
+
+writeHeartbeat()
+setInterval(writeHeartbeat, HEARTBEAT_INTERVAL_MS)
 
 // ── Worker ────────────────────────────────────────────────────────────────────
 
