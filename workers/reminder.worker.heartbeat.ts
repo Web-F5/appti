@@ -2,7 +2,7 @@
 
 // ── Heartbeat ─────────────────────────────────────────────────────────────────
 // Add this import to your existing imports line:
-import { redisConnection, QUEUE_NAMES, type ReminderJobData, redis } from '../src/lib/bullmq/queues'
+// import { redisConnection, QUEUE_NAMES, type ReminderJobData, redis } from '../src/lib/bullmq/queues'
 // (add 'redis' to the existing import — see src/lib/bullmq/queues.ts update below)
 
 const HEARTBEAT_INTERVAL_MS = Number(process.env.HEALTH_CHECK_INTERVAL_MINS ?? 5) * 60 * 1000
