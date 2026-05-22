@@ -63,9 +63,10 @@ async function checkWorker(): Promise<HealthReport['services']['worker']> {
 
 async function checkQueue(): Promise<HealthReport['services']['queue']> {
   try {
+    // BullMQ v5 uses sorted sets for waiting and failed jobs
     const [waiting, failed] = await Promise.all([
-      redis.llen('bull:reminders:wait'),
-      redis.llen('bull:reminders:failed'),
+      redis.zcard('bull:reminders:wait'),
+      redis.zcard('bull:reminders:failed'),
     ])
     const status: ServiceStatus = failed > 10 ? 'error' : failed > 0 ? 'warn' : 'ok'
     return { status, waiting, failed }
