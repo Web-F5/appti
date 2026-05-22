@@ -48,7 +48,13 @@ type MobileMessageResponse = {
  * Phone numbers should be in E.164 format: +61412345678
  * The normalisePhone() util in src/lib/utils handles AU number formatting.
  */
-export async function sendSms(to: string, body: string): Promise<SmsResult> {
+
+export async function sendSms(to: string, body: string): Promise<{ success: boolean; providerMsgId?: string; error?: string }> {
+  // Skip SMS if credentials not configured
+  if (!process.env.MOBILEMESSAGE_USERNAME || !process.env.MOBILEMESSAGE_PASSWORD) {
+    console.log('[MobileMessage] SMS credentials not configured — skipping SMS')
+    return { success: false, error: 'SMS not configured' }
+  }
   try {
     const payload = {
       messages: [

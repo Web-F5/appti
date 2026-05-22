@@ -25,7 +25,7 @@ const RATES = {
 
 const FEATURES = [
   { icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z', title: 'Online booking, 24/7', body: 'Clients book themselves from any device. You wake up to a full schedule without lifting a finger.' },
-  { icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z', title: 'SMS & email reminders', body: 'Automated reminders before every appointment cut no-shows dramatically. Pay only for messages sent.' },
+  { icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z', title: 'SMS & email reminders', body: 'Automated reminders before every appointment cut no-shows dramatically. All SMS sent via ACMA-registered sender IDs in compliance with Australian regulations. Pay only for messages sent.' },
   { icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z', title: 'Calendar sync', body: "Every booking appears in your Google Calendar, Outlook, or Apple Calendar the moment it's made." },
   { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', title: 'Multi-staff support', body: 'Run a team? Each staff member gets their own schedule and availability. Clients pick who they want.' },
   { icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z', title: 'Business reports', body: 'See your busiest days, most popular services, and monthly trends at a glance.' },
@@ -187,7 +187,7 @@ export default function LandingPage() {
       {/* ── Trust strip ── */}
       <div style={{ background: '#EDE9FF', borderTop: '0.5px solid #D4CCFF', borderBottom: '0.5px solid #D4CCFF', padding: '14px 24px' }}>
         <div className="strip" style={{ maxWidth: 1100, margin: '0 auto' }}>
-          {['No monthly lock-in', 'Australian SMS routing', 'Google & Outlook calendar sync', 'ACMA compliant reminders'].map((item, i) => (
+          {['No monthly lock-in', 'Australian SMS routing', 'Google & Outlook calendar sync', 'ACMA compliant reminders', 'ACMA registered sender ID'].map((item, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <svg width={14} height={14} fill="none" viewBox="0 0 24 24" stroke="#4A2FA0" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
               <span style={{ fontSize: 13, fontWeight: 500, color: '#4A2FA0' }}>{item}</span>
@@ -335,6 +335,7 @@ export default function LandingPage() {
             ))}
           </div>
           <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.3)', margin: 0 }}>© 2026 {APP_NAME}. All rights reserved.</p>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', margin: 0 }}>SMS services comply with ACMA requirements and the Spam Act 2003 (Australia)</p>
         </div>
       </footer>
     </div>
