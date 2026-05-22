@@ -4,9 +4,7 @@
 // Auth: Basic Auth (Base64 encoded username:password)
 // No SDK needed — plain fetch with JSON.
 
-if (!process.env.MOBILEMESSAGE_USERNAME || !process.env.MOBILEMESSAGE_PASSWORD) {
-  throw new Error('Missing MOBILEMESSAGE_USERNAME or MOBILEMESSAGE_PASSWORD environment variables')
-}
+// Credentials checked lazily inside sendSms() — allows running without SMS configured
 
 const API_BASE = 'https://api.mobilemessage.com.au/v1'
 
