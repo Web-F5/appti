@@ -31,20 +31,26 @@ export async function GET(req: NextRequest, { params }: Params) {
   const appt = await prisma.appointment.findUnique({
     where: { id },
     include: {
-      service:     { select: { name: true } },
+      service:     { select: { name: true, businessId: true } },
       client:      { select: { name: true, email: true } },
       staffMember: { select: { name: true } },
-      business:    { select: { name: true, slug: true } },
+      //business:    { select: { name: true, slug: true } },
     },
   })
 
   if (!appt) return apiError('Appointment not found', 404)
+  // Fetch business separately
+  const business = await prisma.business.findUnique({
+    where: { id: appt.service.businessId },
+    select: { name: true, slug: true },
+  })
+
   if (appt.status === 'CANCELLED') return apiError('This appointment has already been cancelled', 400)
   if (!verifyToken(token, id, appt.createdAt)) return apiError('Invalid or expired cancellation link', 403)
 
   return apiSuccess({
     serviceName:  appt.service.name,
-    businessName: appt.business.name,
+    businessName: business?.name,
     staffName:    appt.staffMember.name,
     startsAt:     appt.startsAt.toISOString(),
     status:       appt.status,
@@ -62,13 +68,18 @@ export async function POST(req: NextRequest, { params }: Params) {
   const appt = await prisma.appointment.findUnique({
     where: { id },
     include: {
-      business: { select: { name: true, slug: true } },
+      //business: { select: { name: true, slug: true } },
       client:   { select: { name: true, email: true } },
-      service:  { select: { name: true } },
+      service:  { select: { name: true, businessId: true } },
     },
   })
 
   if (!appt) return apiError('Appointment not found', 404)
+  // Fetch business separately
+  const business = await prisma.business.findUnique({
+    where: { id: appt.service.businessId },
+    select: { name: true, slug: true },
+  })
   if (appt.status === 'CANCELLED') return apiError('Already cancelled', 400)
   if (!verifyToken(token, id, appt.createdAt)) return apiError('Invalid or expired cancellation link', 403)
 
@@ -79,5 +90,5 @@ export async function POST(req: NextRequest, { params }: Params) {
 
   console.log(`[cancel] Appointment ${id} cancelled by client via token`)
 
-  return apiSuccess({ cancelled: true, businessName: appt.business.name })
+  return apiSuccess({ cancelled: true, businessName: business?.name })
 }
