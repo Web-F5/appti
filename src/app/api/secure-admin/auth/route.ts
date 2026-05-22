@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
     secure:   process.env.NODE_ENV === 'production',
     sameSite: 'strict',
     maxAge:   COOKIE_MAX_AGE,
-    path:     '/secure-admin',
+    path:     '/',  // root path so cookie is sent to both /secure-admin and /api/secure-admin
   })
 
   return Response.json({ authenticated: true })

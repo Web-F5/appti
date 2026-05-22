@@ -127,7 +127,16 @@ const worker = new Worker<ReminderJobData>(
     // ── Send the message ────────────────────────────────────────────────────
     const result = channel === 'SMS'
       ? await sendSms(to, body)
-      : await sendEmail(to, subject ?? 'Appointment Reminder', body)
+      : await sendEmail(
+        to,
+        subject ?? 'Appointment Reminder',
+        body,
+        // Convert cancel URLs to clickable HTML buttons for email
+        body.replace(
+          /(https:\/\/[^\s]+\/cancel[^\s]*)/g,
+          '<br/><a href="$1" style="display:inline-block;margin-top:8px;padding:10px 20px;background:#DC2626;color:white;text-decoration:none;border-radius:8px;font-weight:bold;font-family:Arial,Helvetica,sans-serif;">Cancel appointment</a>'
+        )
+      )
 
     const now = new Date()
 
