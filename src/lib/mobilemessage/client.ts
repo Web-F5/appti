@@ -47,12 +47,12 @@ type MobileMessageResponse = {
  * The normalisePhone() util in src/lib/utils handles AU number formatting.
  */
 
-export async function sendSms(to: string, body: string): Promise<{ success: boolean; providerMsgId?: string; error?: string }> {
-  // Skip SMS if credentials not configured
+export async function sendSms(to: string, body: string) {
   if (!process.env.MOBILEMESSAGE_USERNAME || !process.env.MOBILEMESSAGE_PASSWORD) {
-    console.log('[MobileMessage] SMS credentials not configured — skipping SMS')
+    console.log('[MobileMessage] Credentials not configured — skipping SMS')
     return { success: false, error: 'SMS not configured' }
   }
+  
   try {
     const payload = {
       messages: [
