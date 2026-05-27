@@ -23,7 +23,7 @@ const config: Config = {
         orange: {
           DEFAULT: '#fd9900', //E8845A
           50:  '#FEF0E8',
-          600: '#de4c00', //C4623Aj 
+          600: '#e6692e', //C4623Aj 
         },
       },
       fontFamily: {
