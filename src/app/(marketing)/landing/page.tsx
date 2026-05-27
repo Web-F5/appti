@@ -111,7 +111,7 @@ export default function LandingPage() {
           </div>
           <div className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Link href="/login" style={{ padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>Sign in</Link>
-            <Link href="/register" style={{ padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 600, background: '#E8845A', color: 'white', textDecoration: 'none' }}>Get started free</Link>
+            <Link href="/register" style={{ padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 600, background: 'orange', color: 'white', textDecoration: 'none' }}>Get started free</Link>
           </div>
           {/* No buttons on mobile — CTAs are in the hero section */}
         </div>
@@ -127,13 +127,13 @@ export default function LandingPage() {
                 <span style={{ fontSize: 13, color: '#60A5FA', fontWeight: 500 }}>Built for Australian trades and service businesses</span>
               </div>
               <h1 className="hero-h1" style={{ fontWeight: 800, color: 'white', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: 20 }}>
-                Bookings that<br/><span style={{ color: '#E8845A' }}>run themselves</span>
+                Bookings that<br/><span style={{ color: 'orange' }}>run themselves</span>
               </h1>
               <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginBottom: 36, maxWidth: 440 }}>
                 Online booking, automated SMS and email reminders, and calendar sync - pay only for the messages you send.
               </p>
               <div className="hero-btns">
-                <Link href="/register" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 700, background: '#E8845A', color: 'white', textDecoration: 'none' }}>
+                <Link href="/register" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 700, background: 'orange', color: 'white', textDecoration: 'none' }}>
                   Start for free →
                 </Link>
                 <Link href="/login" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: 'rgba(255,255,255,0.1)', color: 'white', textDecoration: 'none', border: '0.5px solid rgba(255,255,255,0.2)' }}>
@@ -156,10 +156,10 @@ export default function LandingPage() {
                 <p style={{ fontSize: 13, fontWeight: 600, color: '#4A3F7A', marginBottom: 12 }}>Select a service</p>
                 {[
                   { name: 'Standard Inspection', dur: '60 min', price: '$180', color: '#60A5FA', selected: true },
-                  { name: 'Quick Quote Visit', dur: '30 min', price: 'Quote', color: '#E8845A', selected: false },
+                  { name: 'Quick Quote Visit', dur: '30 min', price: 'Quote', color: 'orange', selected: false },
                   { name: 'Emergency Call-Out', dur: '90 min', price: '$320', color: '#EF4444', selected: false },
                 ].map((s, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', borderRadius: 10, border: `0.5px solid ${s.selected ? '#E8845A' : '#E2DCEF'}`, marginBottom: 8, background: s.selected ? '#FEF0E8' : 'white' }}>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', borderRadius: 10, border: `0.5px solid ${s.selected ? 'orange' : '#E2DCEF'}`, marginBottom: 8, background: s.selected ? '#FEF0E8' : 'white' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                       <div style={{ width: 8, height: 8, borderRadius: '50%', background: s.color }}/>
                       <div>
@@ -222,7 +222,7 @@ export default function LandingPage() {
             {PLANS.map((plan, i) => (
               <div key={i} style={{ background: plan.featured ? 'white' : 'rgba(255,255,255,0.06)', borderRadius: 20, padding: 28, border: plan.featured ? 'none' : '0.5px solid rgba(255,255,255,0.1)', position: 'relative' }}>
                 {plan.featured && (
-                  <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: '#E8845A', color: 'white', fontSize: 12, fontWeight: 700, padding: '4px 14px', borderRadius: 20 }}>
+                  <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: 'orange', color: 'white', fontSize: 12, fontWeight: 700, padding: '4px 14px', borderRadius: 20 }}>
                     Most popular
                   </div>
                 )}
@@ -240,7 +240,7 @@ export default function LandingPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/register" style={{ display: 'block', textAlign: 'center', padding: '12px 0', borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: plan.featured ? '#E8845A' : 'rgba(255,255,255,0.12)', color: plan.featured ? 'white' : 'rgba(255,255,255,0.85)' }}>
+                <Link href="/register" style={{ display: 'block', textAlign: 'center', padding: '12px 0', borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: plan.featured ? 'orange' : 'rgba(255,255,255,0.12)', color: plan.featured ? 'white' : 'rgba(255,255,255,0.85)' }}>
                   {plan.cta}
                 </Link>
               </div>
@@ -259,7 +259,7 @@ export default function LandingPage() {
             <div key={i} style={{ background: 'white', borderRadius: 16, padding: 28, border: '0.5px solid #E2DCEF' }}>
               <div style={{ display: 'flex', gap: 2, marginBottom: 14 }}>
                 {[...Array(5)].map((_, j) => (
-                  <svg key={j} width={16} height={16} viewBox="0 0 24 24" fill="#E8845A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg key={j} width={16} height={16} viewBox="0 0 24 24" fill="orange"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                 ))}
               </div>
               <p style={{ fontSize: 15, color: '#4A3F7A', lineHeight: 1.7, marginBottom: 18, fontStyle: 'italic' }}>&ldquo;{t.quote}&rdquo;</p>
@@ -281,7 +281,7 @@ export default function LandingPage() {
               <div key={i} className="carousel-card">
                 <div style={{ display: 'flex', gap: 2, marginBottom: 14 }}>
                   {[...Array(5)].map((_, j) => (
-                    <svg key={j} width={16} height={16} viewBox="0 0 24 24" fill="#E8845A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg key={j} width={16} height={16} viewBox="0 0 24 24" fill="orange"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   ))}
                 </div>
                 <p style={{ fontSize: 15, color: '#4A3F7A', lineHeight: 1.7, marginBottom: 18, fontStyle: 'italic' }}>&ldquo;{t.quote}&rdquo;</p>
@@ -295,7 +295,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: '#E8845A', padding: '72px 24px' }}>
+      <section style={{ background: 'orange', padding: '72px 24px' }}>
         <div style={{ maxWidth: 600, margin: '0 auto', textAlign: 'center' }}>
           <h2 style={{ fontSize: 36, fontWeight: 800, color: 'white', letterSpacing: '-0.02em', marginBottom: 16 }}>Ready to fill your calendar?</h2>
           <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.8)', marginBottom: 32 }}>Create your account in minutes.</p>
@@ -313,7 +313,7 @@ export default function LandingPage() {
       <footer style={{ background: '#1A1035', padding: '36px 24px' }}>
         <div className="footer-inner" style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 28, height: 28, background: '#E8845A', borderRadius: 7, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 28, height: 28, background: 'orange', borderRadius: 7, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width={14} height={14} fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
                 <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
               </svg>
