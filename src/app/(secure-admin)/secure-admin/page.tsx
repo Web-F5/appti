@@ -46,11 +46,7 @@ function LoginForm({ onLogin }: { onLogin: () => void }) {
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0F0A1E', padding: 24 }}>
       <div style={{ width: '100%', maxWidth: 360, background: '#1A1035', borderRadius: 20, padding: 40, border: '0.5px solid rgba(255,255,255,0.1)' }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{ width: 48, height: 48, background: '#E8845A', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-            <svg width={24} height={24} fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-            </svg>
-          </div>
+          <img src="/logo.png" alt="Appti" style={{ height: 32, width: 'auto' }} />
           <h1 style={{ fontSize: 22, fontWeight: 800, color: 'white', margin: 0 }}>Admin</h1>
           <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>Restricted access</p>
         </div>

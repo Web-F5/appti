@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Appti — Online booking for trades and service businesses',
+  title: 'Appti - Online booking for service based businesses',
   description: 'SMS and email reminders, calendar sync, and pay-as-you-go pricing.',
 }
 
@@ -134,7 +134,7 @@ export default function LandingPage() {
                 Bookings that<br/><span style={{ color: '#E8845A' }}>run themselves</span>
               </h1>
               <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginBottom: 36, maxWidth: 440 }}>
-                Online booking, automated SMS and email reminders, and calendar sync — pay only for the messages you send.
+                Online booking, automated SMS and email reminders, and calendar sync - pay only for the messages you send.
               </p>
               <div className="hero-btns">
                 <Link href="/register" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 700, background: '#E8845A', color: 'white', textDecoration: 'none' }}>
