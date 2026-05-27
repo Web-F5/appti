@@ -111,7 +111,7 @@ export default function LandingPage() {
           </div>
           <div className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Link href="/login" style={{ padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>Sign in</Link>
-            <Link href="/register" style={{ padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 600, background: 'orange', color: 'white', textDecoration: 'none' }}>Get started free</Link>
+            <Link href="/register" className="bg-orange-600 text-white no-underline" style={{ padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 600}}>Get started free</Link>
           </div>
           {/* No buttons on mobile — CTAs are in the hero section */}
         </div>
@@ -133,7 +133,7 @@ export default function LandingPage() {
                 Online booking, automated SMS and email reminders, and calendar sync - pay only for the messages you send.
               </p>
               <div className="hero-btns">
-                <Link href="/register" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 700, background: 'orange', color: 'white', textDecoration: 'none' }}>
+                <Link href="/register" className="bg-orange-600 text-white no-underline" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 700}}>
                   Start for free →
                 </Link>
                 <Link href="/login" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: 'rgba(255,255,255,0.1)', color: 'white', textDecoration: 'none', border: '0.5px solid rgba(255,255,255,0.2)' }}>
@@ -156,7 +156,7 @@ export default function LandingPage() {
                 <p style={{ fontSize: 13, fontWeight: 600, color: '#4A3F7A', marginBottom: 12 }}>Select a service</p>
                 {[
                   { name: 'Standard Inspection', dur: '60 min', price: '$180', color: '#60A5FA', selected: true },
-                  { name: 'Quick Quote Visit', dur: '30 min', price: 'Quote', color: 'orange', selected: false },
+                  { name: 'Quick Quote Visit', dur: '30 min', price: 'Quote', color: '#fd9900', selected: false },
                   { name: 'Emergency Call-Out', dur: '90 min', price: '$320', color: '#EF4444', selected: false },
                 ].map((s, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', borderRadius: 10, border: `0.5px solid ${s.selected ? 'orange' : '#E2DCEF'}`, marginBottom: 8, background: s.selected ? '#FEF0E8' : 'white' }}>
