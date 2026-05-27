@@ -21,9 +21,9 @@ const config: Config = {
           900: '#2D1B69',
         },
         orange: {
-          DEFAULT: '#E8845A',
+          DEFAULT: '#fd9900', //E8845A
           50:  '#FEF0E8',
-          600: '#C4623A',
+          600: '#de4c00', //C4623A
         },
       },
       fontFamily: {
