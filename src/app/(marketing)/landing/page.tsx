@@ -111,7 +111,7 @@ export default function LandingPage() {
           </div>
           <div className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Link href="/login" style={{ padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>Sign in</Link>
-            <Link href="/register" className="bg-orange-500 text-white no-underline" style={{ padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 600}}>Get started free</Link>
+            <Link href="/register" className="bg-orange-400 text-white no-underline" style={{ padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 600}}>Get started free</Link>
           </div>
           {/* No buttons on mobile — CTAs are in the hero section */}
         </div>
