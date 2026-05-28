@@ -48,11 +48,7 @@ export default function RegisterPage() {
     <div className="min-h-screen flex" style={{ background: 'var(--surface)' }}>
       <div className="hidden lg:flex w-80 flex-col justify-between p-10" style={{ background: 'var(--purple-dark)' }}>
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: 'var(--orange)' }}>
-            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-          </div>
+          <img src="/logo.png" alt="Appti" style={{ height: 32, width: 'auto' }} />
           <span className="font-semibold text-white">{process.env.NEXT_PUBLIC_APP_NAME ?? 'Appti'}</span>
         </div>
         <div>

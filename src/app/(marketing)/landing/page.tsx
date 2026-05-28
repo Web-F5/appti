@@ -313,11 +313,7 @@ export default function LandingPage() {
       <footer style={{ background: '#1A1035', padding: '36px 24px' }}>
         <div className="footer-inner" style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 28, height: 28, background: 'orange', borderRadius: 7, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width={14} height={14} fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
-                <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-            </div>
+            <img src="/logo.png" alt="Appti" style={{ height: 32, width: 'auto' }} />
             <span style={{ fontWeight: 700, color: 'white', fontSize: 15 }}>{APP_NAME}</span>
           </div>
           <div style={{ display: 'flex', gap: 24 }}>
