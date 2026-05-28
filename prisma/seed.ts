@@ -13,8 +13,8 @@ async function main() {
     where: { slug: 'demo-trades' },
     update: {},
     create: {
-      name: 'Demo Trades Co.',
-      slug: 'demo-trades',
+      name: 'Demo Service Co.',
+      slug: 'demo-service-business',
       timezone: 'Australia/Melbourne',
       primaryColor: '#2563eb',
       bookingLeadHours: 2,

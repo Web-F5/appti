@@ -124,7 +124,7 @@ export default function LandingPage() {
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(96,165,250,0.15)', border: '0.5px solid rgba(96,165,250,0.3)', borderRadius: 20, padding: '6px 14px', marginBottom: 24 }}>
                 <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#60A5FA' }}/>
-                <span style={{ fontSize: 13, color: '#60A5FA', fontWeight: 500 }}>Built for Australian trades and service businesses</span>
+                <span style={{ fontSize: 13, color: '#60A5FA', fontWeight: 500 }}>Built for Australian service based businesses</span>
               </div>
               <h1 className="hero-h1" style={{ fontWeight: 800, color: 'white', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: 20 }}>
                 Bookings that<br/><span className="text-orange-400 no-underline">run themselves</span>
@@ -139,7 +139,7 @@ export default function LandingPage() {
                 <Link href="/login" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: 'rgba(255,255,255,0.1)', color: 'white', textDecoration: 'none', border: '0.5px solid rgba(255,255,255,0.2)' }}>
                   Sign in
                 </Link>
-                <Link href="/book/demo-trades" target="_blank" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.7)', textDecoration: 'none', border: '0.5px solid rgba(255,255,255,0.15)' }}>
+                <Link href="/book/demo-service-business" target="_blank" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.7)', textDecoration: 'none', border: '0.5px solid rgba(255,255,255,0.15)' }}>
                   See demo
                 </Link>
               </div>
@@ -149,7 +149,7 @@ export default function LandingPage() {
             {/* Mock booking widget — hidden on mobile */}
             <div className="hero-widget" style={{ background: 'white', borderRadius: 20, overflow: 'hidden', boxShadow: '0 40px 80px rgba(0,0,0,0.4)', border: '1.5px solid #EDE9FF' }}>
               <div style={{ background: '#2D1B69', padding: '20px 24px' }}>
-                <p style={{ color: 'white', fontWeight: 700, fontSize: 16, margin: 0 }}>Demo Trades Co.</p>
+                <p style={{ color: 'white', fontWeight: 700, fontSize: 16, margin: 0 }}>Demo Service Co.</p>
                 <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 13, margin: '4px 0 0' }}>Online booking</p>
               </div>
               <div style={{ padding: 24 }}>
@@ -240,7 +240,7 @@ export default function LandingPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/register" style={{ display: 'block', textAlign: 'center', padding: '12px 0', borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: plan.featured ? 'orange' : 'rgba(255,255,255,0.12)', color: plan.featured ? 'white' : 'rgba(255,255,255,0.85)' }}>
+                <Link href="/register" className="bg-orange-400 text-white no-underline" style={{ display: 'block', textAlign: 'center', padding: '12px 0', borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: plan.featured ? 'orange' : 'rgba(255,255,255,0.12)', color: plan.featured ? 'white' : 'rgba(255,255,255,0.85)' }}>
                   {plan.cta}
                 </Link>
               </div>
