@@ -127,13 +127,13 @@ export default function LandingPage() {
                 <span style={{ fontSize: 13, color: '#60A5FA', fontWeight: 500 }}>Built for Australian trades and service businesses</span>
               </div>
               <h1 className="hero-h1" style={{ fontWeight: 800, color: 'white', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: 20 }}>
-                Bookings that<br/><span style={{ color: 'orange' }}>run themselves</span>
+                Bookings that<br/><span className="bg-orange-400 text-white no-underline">run themselves</span>
               </h1>
               <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginBottom: 36, maxWidth: 440 }}>
                 Online booking, automated SMS and email reminders, and calendar sync - pay only for the messages you send.
               </p>
               <div className="hero-btns">
-                <Link href="/register" className="bg-orange-600 text-white no-underline" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 700}}>
+                <Link href="/register" className="bg-orange-400 text-white no-underline" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 700}}>
                   Start for free →
                 </Link>
                 <Link href="/login" style={{ padding: '14px 28px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: 'rgba(255,255,255,0.1)', color: 'white', textDecoration: 'none', border: '0.5px solid rgba(255,255,255,0.2)' }}>
