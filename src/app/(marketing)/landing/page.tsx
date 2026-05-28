@@ -222,7 +222,7 @@ export default function LandingPage() {
             {PLANS.map((plan, i) => (
               <div key={i} style={{ background: plan.featured ? 'white' : 'rgba(255,255,255,0.06)', borderRadius: 20, padding: 28, border: plan.featured ? 'none' : '0.5px solid rgba(255,255,255,0.1)', position: 'relative' }}>
                 {plan.featured && (
-                  <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: 'orange', color: 'white', fontSize: 12, fontWeight: 700, padding: '4px 14px', borderRadius: 20 }}>
+                  <div className="bg-orange-400 text-white no-underline" style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', fontSize: 12, fontWeight: 700, padding: '4px 14px', borderRadius: 20 }}>
                     Most popular
                   </div>
                 )}
