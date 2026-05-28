@@ -111,7 +111,7 @@ export default function LandingPage() {
           </div>
           <div className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Link href="/login" style={{ padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>Sign in</Link>
-            <Link href="/register" className="bg-orange-400 text-white no-underline" style={{ padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 600}}>Get started free</Link>
+            <Link href="/register" className="bg-orange-500 text-white no-underline" style={{ padding: '8px 18px', borderRadius: 10, fontSize: 14, fontWeight: 600}}>Get started free</Link>
           </div>
           {/* No buttons on mobile — CTAs are in the hero section */}
         </div>
@@ -127,7 +127,7 @@ export default function LandingPage() {
                 <span style={{ fontSize: 13, color: '#60A5FA', fontWeight: 500 }}>Built for Australian trades and service businesses</span>
               </div>
               <h1 className="hero-h1" style={{ fontWeight: 800, color: 'white', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: 20 }}>
-                Bookings that<br/><span className="bg-orange-400 text-white no-underline">run themselves</span>
+                Bookings that<br/><span className="text-orange-400 no-underline">run themselves</span>
               </h1>
               <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginBottom: 36, maxWidth: 440 }}>
                 Online booking, automated SMS and email reminders, and calendar sync - pay only for the messages you send.
