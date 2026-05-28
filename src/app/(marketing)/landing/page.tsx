@@ -240,7 +240,7 @@ export default function LandingPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/register" className="bg-orange-400 text-white no-underline" style={{ display: 'block', textAlign: 'center', padding: '12px 0', borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: plan.featured ? 'orange' : 'rgba(255,255,255,0.12)', color: plan.featured ? 'white' : 'rgba(255,255,255,0.85)' }}>
+                <Link href="/register" style={{ display: 'block', textAlign: 'center', padding: '12px 0', borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: plan.featured ? 'orange-400' : 'rgba(255,255,255,0.12)', color: plan.featured ? 'white' : 'rgba(255,255,255,0.85)' }}>
                   {plan.cta}
                 </Link>
               </div>
@@ -298,11 +298,11 @@ export default function LandingPage() {
       <section className="bg-orange-400 text-white no-underline" style={{ padding: '72px 24px' }}>
         <div style={{ maxWidth: 600, margin: '0 auto', textAlign: 'center' }}>
           <h2 style={{ fontSize: 36, fontWeight: 800, color: 'white', letterSpacing: '-0.02em', marginBottom: 16 }}>Ready to fill your calendar?</h2>
-          <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.8)', marginBottom: 32 }}>Create your account in minutes.</p>
+          <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.9)', marginBottom: 32 }}>Create your account in minutes.</p>
           <Link href="/register" style={{ display: 'inline-block', padding: '16px 40px', borderRadius: 14, fontSize: 17, fontWeight: 800, background: '#2D1B69', color: 'white', textDecoration: 'none' }}>
             Get started free →
           </Link>
-          <p style={{ marginTop: 16, fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>
+          <p style={{ marginTop: 16, fontSize: 13, color: 'rgba(255,255,255,0.9)' }}>
             Already have an account?{' '}
             <Link href="/login" style={{ color: 'white', fontWeight: 600, textDecoration: 'underline' }}>Sign in</Link>
           </p>
