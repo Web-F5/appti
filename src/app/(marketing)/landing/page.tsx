@@ -240,7 +240,7 @@ export default function LandingPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/register" style={{ display: 'block', textAlign: 'center', padding: '12px 0', borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: plan.featured ? 'orange-400' : 'rgba(255,255,255,0.12)', color: plan.featured ? 'white' : 'rgba(255,255,255,0.85)' }}>
+                <Link href="/register" style={{ display: 'block', textAlign: 'center', padding: '12px 0', borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: plan.featured ? '#ec8f14' : 'rgba(255,255,255,0.12)', color: plan.featured ? 'white' : 'rgba(255,255,255,0.85)' }}>
                   {plan.cta}
                 </Link>
               </div>
@@ -259,7 +259,7 @@ export default function LandingPage() {
             <div key={i} style={{ background: 'white', borderRadius: 16, padding: 28, border: '0.5px solid #E2DCEF' }}>
               <div style={{ display: 'flex', gap: 2, marginBottom: 14 }}>
                 {[...Array(5)].map((_, j) => (
-                  <svg key={j} width={16} height={16} viewBox="0 0 24 24" fill="orange"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg key={j} width={16} height={16} viewBox="0 0 24 24" fill="#ec8f14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                 ))}
               </div>
               <p style={{ fontSize: 15, color: '#4A3F7A', lineHeight: 1.7, marginBottom: 18, fontStyle: 'italic' }}>&ldquo;{t.quote}&rdquo;</p>

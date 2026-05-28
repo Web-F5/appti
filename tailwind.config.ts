@@ -23,6 +23,8 @@ const config: Config = {
         orange: {
           DEFAULT: '#fd9900', //E8845A
           50:  '#FEF0E8',
+          400: '#ec8f14', //E8845A
+          500: '#e48213', 
           600: '#d47209', //,e6692e, C4623Aj 
         },
       },
