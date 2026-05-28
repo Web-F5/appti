@@ -295,7 +295,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: 'orange', padding: '72px 24px' }}>
+      <section style={{ background: 'orange-600', padding: '72px 24px' }}>
         <div style={{ maxWidth: 600, margin: '0 auto', textAlign: 'center' }}>
           <h2 style={{ fontSize: 36, fontWeight: 800, color: 'white', letterSpacing: '-0.02em', marginBottom: 16 }}>Ready to fill your calendar?</h2>
           <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.8)', marginBottom: 32 }}>Create your account in minutes.</p>
