@@ -1,5 +1,4 @@
 'use client'
-'use client'
 import { Suspense } from 'react'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'

@@ -116,6 +116,6 @@ export async function GET(req: NextRequest) {
 
   return Response.json(report, {
     status: status === 'error' ? 503 : 200,
-    headers: { 'Cache-Control': 'no-store' },
+    headers: { 'Cache-Control': 's-maxage=60, stale-while-revalidate=30' },
   })
 }

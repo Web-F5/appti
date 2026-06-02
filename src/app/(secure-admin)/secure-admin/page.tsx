@@ -189,7 +189,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
 
   useEffect(() => {
     fetchHealth()
-    const t = setInterval(fetchHealth, 60_000)
+    const t = setInterval(fetchHealth, 5*60_000)
     return () => clearInterval(t)
   }, [])
 
