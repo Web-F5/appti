@@ -192,6 +192,9 @@ const worker = new Worker<ReminderJobData>(
   {
     connection: redisConnection,
     concurrency: 5,
+    stalledInterval:  30_000,   // check for stalled jobs every 30s (default: 5s)
+    lockDuration:     30_000,   // job lock duration
+    skipLockRenewal:  false,
   }
 )
 
