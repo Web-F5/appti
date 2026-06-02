@@ -195,6 +195,7 @@ const worker = new Worker<ReminderJobData>(
     stalledInterval:  30_000,   // check for stalled jobs every 30s (default: 5s)
     lockDuration:     30_000,   // job lock duration
     skipLockRenewal:  false,
+    drainDelay:       30,      // wait 30s between checks when queue is empty (default: 5s)
   }
 )
 

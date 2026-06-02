@@ -47,6 +47,9 @@ export const reminderQueue = new Queue<ReminderJobData>(QUEUE_NAMES.REMINDERS, {
     removeOnComplete: { count: 500 },
     removeOnFail: { count: 1000 },
   },
+  streams: {
+    events: { maxLen: 100 },  // limit event stream size
+  },
 })
 
 // ── Queue helpers ─────────────────────────────────────────────────────────────
