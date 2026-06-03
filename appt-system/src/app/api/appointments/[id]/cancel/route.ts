@@ -44,7 +44,7 @@ export async function GET(req: NextRequest, { params }: Params) {
 
   return apiSuccess({
     serviceName:  appt.service.name,
-    businessName: appt.business.name,
+    businessName: business?.name ?? 'the business',
     staffName:    appt.staffMember.name,
     startsAt:     appt.startsAt.toISOString(),
     status:       appt.status,
@@ -79,5 +79,5 @@ export async function POST(req: NextRequest, { params }: Params) {
 
   console.log(`[cancel] Appointment ${id} cancelled by client via token`)
 
-  return apiSuccess({ cancelled: true, businessName: appt.business.name })
+  return apiSuccess({ cancelled: true, businessName: business?.name ?? 'the business' })
 }
