@@ -74,9 +74,10 @@ async function checkWorker(): Promise<HealthReport['services']['worker']> {
 
 async function checkQueue(): Promise<HealthReport['services']['queue']> {
   try {
+    // Count pending and failed reminders from database (cron approach)
     const [pending, failed] = await Promise.all([
-      prisma.reminder.count({ where: { status: 'SCHEDULED' } }),
-      prisma.reminder.count({ where: { status: 'FAILED'    } }),
+      prisma.reminder.count({ where: { status: 'PENDING' } }),
+      prisma.reminder.count({ where: { status: 'FAILED'  } }),
     ])
     const status: ServiceStatus = failed > 10 ? 'error' : failed > 0 ? 'warn' : 'ok'
     return { status, waiting: pending, failed }

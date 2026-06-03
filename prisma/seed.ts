@@ -10,7 +10,7 @@ async function main() {
   console.log('Seeding database...')
 
   const business = await prisma.business.upsert({
-    where: { slug: 'demo-trades' },
+    where: { slug: 'demo-service-business' },
     update: {},
     create: {
       name: 'Demo Service Co.',

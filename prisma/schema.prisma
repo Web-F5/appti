@@ -343,3 +343,14 @@ model UsageEvent {
   @@index([businessId, createdAt])
   @@map("usage_events")
 }
+
+// =============================================================================
+// Worker Heartbeat
+// =============================================================================
+
+model WorkerHeartbeat {
+  id       Int      @id @default(1)
+  lastSeen DateTime @default(now()) @map("last_seen") @db.Timestamptz
+
+  @@map("worker_heartbeat")
+}
