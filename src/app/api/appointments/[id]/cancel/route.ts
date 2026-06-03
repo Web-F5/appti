@@ -29,19 +29,18 @@ export async function GET(req: NextRequest, { params }: Params) {
   const token   = req.nextUrl.searchParams.get('token') ?? ''
 
   const appt = await prisma.appointment.findUnique({
-    where: { id },
-    include: {
-      service:     { select: { name: true, businessId: true } },
-      client:      { select: { name: true, email: true } },
-      staffMember: { select: { name: true } },
-      //business:    { select: { name: true, slug: true } },
-    },
+  where: { id },
+  include: {
+    service:     { select: { name: true, businessId: true } },
+    client:      { select: { name: true, email: true } },
+    staffMember: { select: { name: true } },
+  },
   })
 
   if (!appt) return apiError('Appointment not found', 404)
-  // Fetch business separately
+
   const business = await prisma.business.findUnique({
-    where: { id: appt.service.businessId },
+    where:  { id: appt.service.businessId },
     select: { name: true, slug: true },
   })
 
@@ -66,20 +65,20 @@ export async function POST(req: NextRequest, { params }: Params) {
   const token = body.token ?? ''
 
   const appt = await prisma.appointment.findUnique({
-    where: { id },
-    include: {
-      //business: { select: { name: true, slug: true } },
-      client:   { select: { name: true, email: true } },
-      service:  { select: { name: true, businessId: true } },
-    },
+  where: { id },
+  include: {
+    service: { select: { name: true, businessId: true } },
+    client:  { select: { name: true, email: true } },
+  },
   })
 
   if (!appt) return apiError('Appointment not found', 404)
-  // Fetch business separately
+
   const business = await prisma.business.findUnique({
-    where: { id: appt.service.businessId },
+    where:  { id: appt.service.businessId },
     select: { name: true, slug: true },
   })
+  
   if (appt.status === 'CANCELLED') return apiError('Already cancelled', 400)
   if (!verifyToken(token, id, appt.createdAt)) return apiError('Invalid or expired cancellation link', 403)
 
